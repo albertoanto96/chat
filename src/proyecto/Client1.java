@@ -15,13 +15,9 @@ import java.net.*;
                         listen=new listener(echoSocket);
                         listen.start();
 
-
-
-
             String userInput;
             while ((userInput = stdIn.readLine()) != null) {
                 out.println(userInput);
-
                }
             }
             catch (UnknownHostException e) {
