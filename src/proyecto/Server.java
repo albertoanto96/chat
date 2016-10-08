@@ -1,32 +1,33 @@
 package proyecto;
-import java.lang.*;
-import java.lang.Thread;
 import java.net.*;
 import java.io.*;
 
-import static java.lang.System.out;
+public class Server {
 
-public class Server{
     public static void main(String[] args) throws IOException {
+
+
         int portNumber = 1234;
-        Thread[] th = new Thread[100000000];
-        int i=0;
+        Thread[] th = new Thread[1000000];
+        int i = 0;
 
         try {
             ServerSocket serverSocket = new ServerSocket(portNumber);
 
-            while(true) {
+            while (true) {
+
                 Socket clientSocket = serverSocket.accept();
-                global.clientes.add(clientSocket);
-                th[i] = new multithread(clientSocket);
+                Global.socketClientes.add(clientSocket);
+                th[i] = new Multithread(clientSocket);
                 th[i].start();
                 i++;
             }
-        }
-         catch (IOException e) {
-            out.println("Error en el puerto "+ portNumber);
 
-            out.println(e.getMessage());
+        }
+        catch (IOException e) {
+            System.out.println("Error con el puerto " + portNumber);
+
+            System.out.println(e.getMessage());
         }
     }
 }
